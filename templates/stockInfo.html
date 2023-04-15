@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{ stock }} Close Price</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="text-center my-5">
+                    {% if stock in nasdaqCompanies %}
+                    {{ nasdaqCompanies[stock] }} Close Price Over Time
+                    {% else %}
+                    {{ stock }} Close Price Over Time
+                    {% endif %}
+                </h1>
+                <button class="btn btn-primary" onclick="goBack()">Back</button>
+            </div>
+        </div>
+        {{ plot_div|safe }}
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

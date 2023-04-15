@@ -1,0 +1,105 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.graph_objs",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.graph_objs",
+        "description": "plotly.graph_objs",
+        "detail": "plotly.graph_objs",
+        "documentation": {}
+    },
+    {
+        "label": "plotly.offline",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.offline",
+        "description": "plotly.offline",
+        "detail": "plotly.offline",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    if request.method == 'POST':\n        stock = request.form['stock']\n        return redirect(url_for('stockGraph', stock=stock))\n    response = requests.get(\"http://localhost:8000/stocks_in_db\")\n    stocks = response.json()['stocks']\n    return render_template('index.html', stocks=stocks)\n@app.route('/company/<stock>')\ndef stockGraph(stock):\n    nasdaqCompanies = {",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "stockGraph",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def stockGraph(stock):\n    nasdaqCompanies = {\n        \"AAPL\": \"Apple Inc.\",\n        \"MSFT\": \"Microsoft Corporation\",\n        \"GOOG\": \"Alphabet Inc.\",\n        \"AMZN\": \"Amazon.com, Inc.\",\n        \"NVDA\": \"NVIDIA Corporation\",\n        \"TSLA\": \"Tesla, Inc.\",\n        \"META\": \"Meta Platforms, Inc.\",\n        \"ASML\": \"ASML Holding N.V.\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/', methods=['GET', 'POST'])\ndef index():\n    if request.method == 'POST':\n        stock = request.form['stock']\n        return redirect(url_for('stockGraph', stock=stock))\n    response = requests.get(\"http://localhost:8000/stocks_in_db\")\n    stocks = response.json()['stocks']\n    return render_template('index.html', stocks=stocks)\n@app.route('/company/<stock>')",
+        "detail": "app",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Request {{stock}} Info</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <h1>{{stock}} Data is not available in Database</h1>
+    <button id="request-button">Request Data</button>
+
+    <script>
+        let stock = "{{stock}}";
+        document.getElementById("request-button").addEventListener("click", function () {
+            fetch(`http://localhost:8000/fetch_stocks/${stock}`)
+                .then(response => response.text())
+                .then(data => {
+                    window.location.href = `http://localhost:5000/company/${stock}`;
+                });
+        });
+    </script>
+</body>
+
+</html>
