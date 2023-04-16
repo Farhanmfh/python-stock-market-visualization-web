@@ -51,7 +51,7 @@ def stockGraph(stock):
 
     # Check if data is empty
     if not data['data']:
-        return render_template('request_data.html', stock=stock)
+        return render_template('request_data.html', stock=stock,nasdaqCompanies=nasdaqCompanies)
 
     # Convert the data to a Pandas DataFrame and create a Plotly trace
     df = pd.DataFrame(data['data'])

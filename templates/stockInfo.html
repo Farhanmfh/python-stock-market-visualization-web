@@ -13,6 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
+            <button class="btn btn-primary" style="margin-top : 150px" onclick="goBack()">Back</button>
             <div class="col-md-8 offset-md-2">
                 <h1 class="text-center my-5">
                     {% if stock in nasdaqCompanies %}
@@ -21,7 +22,6 @@
                     {{ stock }} Close Price Over Time
                     {% endif %}
                 </h1>
-                <button class="btn btn-primary" onclick="goBack()">Back</button>
             </div>
         </div>
         {{ plot_div|safe }}

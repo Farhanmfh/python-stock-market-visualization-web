@@ -7,6 +7,35 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .blink-text {
+            color: red;
+            animation: blink 1s linear infinite;
+        }
+
+        .blink-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: red;
+            animation: blink 1s linear infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -23,17 +52,23 @@
             <div class="form-group">
                 <label for="company">Enter a company ticker to get live data:</label>
                 <input type="text" class="form-control" id="company" name="stock"
-                    placeholder='"AAPL", "GOOG", "MSFT", "AMZN", "META", "TSLA", "NVDA", "JPM", "JNJ", "V", "PG", "UNH", "HD", "MA", "DIS"'>
+                    placeholder='"NVDA","META","ASML", "AVGO", "PEP", "AZN", "COST", "CSCO", "TMUS", "ADBE", "TXN", "CMCSA", "NFLX", "AMD", "QCOM"'>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
         </form>
-        <ul class="list-group">
-            {% for stock in stocks %}
-              <li class="list-group-item">
-                <a href="{{ url_for('stockGraph', stock=stock) }}">{{ stock }}</a>
-              </li>
-            {% endfor %}
-          </ul>
+        <div class="text-center mt-5">
+            <h5>Recently viewed</h5>
+            <ul class="list-group">
+                {% for stock in stocks %}
+                <li class="list-group-item">
+                    <a href="{{ url_for('stockGraph', stock=stock) }}">{{ stock }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
     <!-- Bootstrap JS CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -57,7 +92,7 @@
             link.classList.add('card', 'text-white', 'bg-info');
             const header = document.createElement('div');
             header.classList.add('card-header');
-            header.innerText = company.name;
+            header.innerHTML = `${company.name} <span class="blink-text">Live</span> <span class="blink-dot"></span>`;
             const body = document.createElement('div');
             body.classList.add('card-body');
             const title = document.createElement('h5');
