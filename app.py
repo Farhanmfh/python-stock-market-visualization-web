@@ -1,10 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
+from dotenv import load_dotenv
+load_dotenv()
+import os
 import requests
 import pandas as pd
 import plotly.graph_objs as go
 import plotly.offline as pyo
 
 
+api_url = os.getenv('API')
+app_url = os.getenv('APP_URL')
 app = Flask(__name__)
 
 
@@ -15,7 +20,7 @@ def index():
         stock = request.form['stock']
         return redirect(url_for('stockGraph', stock=stock))
 
-    response = requests.get("http://localhost:8000/stocks_in_db")
+    response = requests.get(f"{api_url}/stocks_in_db")
     stocks = response.json()['stocks']
 
     return render_template('index.html', stocks=stocks)
@@ -46,12 +51,12 @@ def stockGraph(stock):
         "QCOM":  "QUALCOMM Incorporated"
     }
     # Fetch stock data for the selected symbol using an API
-    response = requests.get(f'http://localhost:8000/get_stocks/{stock}')
+    response = requests.get(f"{api_url}/get_stocks/{stock}")
     data = response.json()
 
     # Check if data is empty
     if not data['data']:
-        return render_template('request_data.html', stock=stock,nasdaqCompanies=nasdaqCompanies)
+        return render_template('request_data.html', stock=stock,nasdaqCompanies=nasdaqCompanies,app_url=app_url,api_url=api_url)
 
     # Convert the data to a Pandas DataFrame and create a Plotly trace
     df = pd.DataFrame(data['data'])
